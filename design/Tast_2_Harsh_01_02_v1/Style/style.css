@@ -1,0 +1,269 @@
+@import url('./Globle.css');
+@import url('./util.css ');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: #FFFFFF;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1223px;
+    margin: auto;
+    overflow: hidden;
+
+}
+
+.center {
+    text-align: center;
+}
+
+.space {
+    letter-spacing: 0.1em;
+}
+
+.title-color {
+    color: var(--small-title-color);
+}
+
+.container-color {
+    background-color: var(--container-color);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.btn {
+    padding: 10px 18px;
+    background: #558FFF;
+    border-radius: 6px;
+}
+.btn:hover
+{
+    background-color: white;
+    color: #558FFF;
+    transition: 0.5s;
+}
+
+
+/*Header Section start*/
+.header {
+    background-image: url('../Asset/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.row .header-logo {
+    margin-top: 18px;
+}
+
+.navigation nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigation ul li {
+    list-style-type: none;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: white;
+}
+.navigation ul li a:hover{
+    color: #558FFF;
+    transition: 0.5s;
+}
+
+/*headre Section end*/
+
+/*Main banner start*/
+
+.main-banner-containt {
+    padding-top: 263px;
+    text-align: center;
+}
+
+.main-banner .banner-subtitle {
+    padding: 24px 0;
+}
+
+.main-banner h5 {
+    color: white;
+}
+
+.main-banner .social_media ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+    list-style: none;
+    padding-bottom: 208px;
+
+}
+
+.main-banner .social_media ul li {
+    width: 44px;
+    height: 43.41px;
+    background: #FFFFFF;
+    border-radius: 31px;
+    overflow: hidden;
+  
+}
+
+.main-banner .social_media ul li a  {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center ;
+
+
+}
+.main-banner .social_media ul li a:hover 
+{
+  transform: scale(1.5,1.5);
+  transition: 0.5s;
+ 
+}
+
+/*About Section start*/
+
+.about .left img {
+    width: 525.98px;
+    height: 380.25px;
+    position: absolute;
+    object-fit: contain;
+
+}
+
+.about .fream {
+    position: inherit;
+    width: 525.98px;
+    height: 380.25px;
+    border: 2px solid #FFFFFF;
+    border-radius: 24px 0px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.about .right {
+    padding-left: 47px;
+}
+
+.about .right h3 {
+    padding-bottom: 32px;
+}
+
+.about .right p {
+    padding-bottom: 16px;
+}
+
+/*what i do start */
+.what-i-do .row {
+    padding-top: 51px;
+    gap: 20px;
+
+}
+
+.what-i-do .top {
+    display: flex;
+    gap: 18px;
+}
+
+.what-i-do .row .left,
+.what-i-do .row .right {
+    padding: 27px 134px 21px 44px;
+    border-radius: 12px;
+}
+
+.what-i-do .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    background: #38405A;
+    border-radius: 8px;
+}
+
+.what-i-do .row h5 {
+    color: white;
+}
+
+.desc {
+    padding-top: 32px;
+}
+
+/*What i do end*/
+
+/*Portfolio section start*/
+.portfolio-project {
+    border-radius: 0px 0px 12px 12px;
+    float: left;
+}
+
+.Portfolio .row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.portfolio-project .project-img
+{
+ flex-basis: 30%;
+}
+
+.project-content {
+    padding-left: 24px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+.project-content h4 {
+    padding-bottom: 15px;
+}
+
+.btn a {
+    line-height: 0;
+}
+
+/*Portfolio section end*/
+/*Contect section start*/
+.contect-us .content {
+    padding: 78px 0;
+    border-radius: 12px;
+}
+
+.container-btn {
+    padding-top: 32px;
+}
+
+/*Contect section end*/
+
+/*Footer start*/
+footer .content {
+    padding: 44px 0 32px 0;
+}
+
+footer .content p {
+    color: white;
+    font-weight: 700;
+    padding-top: 8px;
+
+}
+
+/*Footer end*/

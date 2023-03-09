@@ -1,0 +1,129 @@
+@font-face {
+    font-family: faktum;
+    src: url('../Asset/Faktum/Rene\ Bieder\ -\ Faktum\ Test\ Bold.otf');
+}
+@import url('https://fonts.cdnfonts.com/css/inter');
+@font-face {
+    font-family: satoshi;
+    src: url('../Asset/Satoshi-Medium.otf');
+}
+@import url('https://fonts.cdnfonts.com/css/general-sans');
+.center
+{
+    text-align: center;
+}
+.py-6
+{
+    padding: 6rem 0;
+}
+.wrapper {
+    max-width: 1512px;
+    width: 100%;
+    margin: auto;
+    /* overflow: hidden; */
+    /* background-color: pink;*/
+} 
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+a {
+    font-family: 'General Sans', sans-serif;    
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+p {
+    font-family: 'General Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+     line-height: 24px;
+}
+
+h1 {
+    font-family: faktum;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 54px;
+    letter-spacing: -2.88px;
+}
+h2{
+
+font-family: faktum;
+font-style: normal;
+font-weight: 600;
+font-size: 96px;
+line-height: 90%;
+letter-spacing: -0.02em;
+
+}
+h5{
+    font-family: 'General Sans', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+
+}
+.btn
+{
+padding: 8px 24px 8px 16px;
+background: #000000;
+color: white;
+border-radius: 99px;
+transition: .5s ;
+
+
+}
+.span-color
+{
+    color:#2400FF;
+    
+}
+.btn:hover
+{
+    
+    border: transparent;
+    box-shadow: 5px 5px #2400FF;
+
+}
+.wrap
+{
+    flex-wrap: wrap;
+}
+.center{
+    align-items: center;
+}
+.icon-manu
+{
+    display: none;
+}
+.icon-manu img
+{
+    width: 30px;
+    height: 30px;
+    
+}
+@media (max-width:768px)
+{
+    .nav 
+    {
+        display: none;
+    }
+    .icon-manu
+    {
+        display: block;
+        width: inherit;
+    }
+}
