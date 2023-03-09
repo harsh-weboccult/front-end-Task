@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard form</title>
+    <link rel="stylesheet" href="./Style/style.css">
+</head>
+
+<body>
+    <section class="container">
+        <div class="form-container">
+            <h1 class="form-title">Wizard form</h1>
+            <div class="btn-container">
+                <button class="btn btn-active" id="step-1" data-id="form-1">Stap - 1 </button>
+                <button class="btn" id="step-2" data-id="form-2">Stap - 2 </button>
+                <button class="btn" id="step-3" data-id="form-3">Stap - 3 </button>
+            </div>
+            <div class="btn-from">
+                <div class="content active" id="form-1">
+                    <form action=""  onsubmit="nextform();return false;" class="form1-container">
+                        <div class="row">
+                            <label for="">First Name:</label>
+                            <input type="text" name="firstname"  placeholder="Enter First Name" id="f_name">
+                        </div>
+                        <div class="row">
+                            <label for="">Last Name:</label>
+                            <input type="text" name=""  placeholder="Enter Last Name" id="l_name">
+                        </div>
+                        <div class="row center">
+                            <label for="">Gender:</label>
+                            <input type="radio" name="Gender" id="" value="male" >Male
+                            <input type="radio" name="Gender" id="" value="Female" >Female
+                        </div>
+                        <div class="row end">
+                            <button class="btn btn-save"  type="submit" data-id="form-2">Save & Next</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="content " onsubmit="finalform();return false;" id="form-2">
+                    <form action="" class="form1-container">
+                        <div class="row">
+                            <label for="">Email:</label>
+                            <input type="email" name="" id="email" placeholder="Enter your Email" >
+                        </div>
+                        <div class="row">
+                            <label for="">Contect no:</label>
+                            <input type="number" name="" id="p_number"     placeholder="Enter Your number" id="">
+                        </div>
+                        <div class="row">
+                            <label for="">Date of Birth:</label>
+                            <input type="date" name="" id="date">
+                        </div>
+                        <div class="row end flex">
+                            <button class="btn btn-prev" type="button"  onclick="firstform()" data-id="previous">previous</button>
+                            <button class="btn btn-save" type="submit
+                            " data-id="form-3">Save & Next</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="content" id="form-3">
+.
+                    <form action="" onsubmit="submitform();return false;" class="form1-container">
+                        <div class="row">
+                            <label for="">Fevourite Sports:</label>
+                           <select name="" id="selection" class="select1">
+                            <option value="Cricket">Cricket</option>
+                            <option value="footbol">Cricket</option>
+                            <option value="kho-kho">Cricket</option>
+                           </select>
+                        </div>
+                        <div class="row">
+                            <label for="">About Yourself:</label>
+                            <textarea name="" id="self" ></textarea>
+                        </div>
+                        <div class="row">
+                            <input type="checkbox" name="" value="check" id="chek">
+                        </div>
+                        <div class="row end flex">
+                            <button class="btn btn-prev" type="button" onclick="prev_form()" data-id="previous">previous</button>
+                            <button class="btn btn-submit" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+          <table border="1" id="mytable">
+            <tr>
+                <td>Sr</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+              
+                <td>Gender</td>
+                <td>email</td>
+                <td>Contect no</td>
+                <td>Dob</td>
+                <td>Sports</td>
+                <td>About You</td>
+                <td>T & C</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+          </table>
+        </div>
+
+    </section>
+    <script src="./Script/script.js"></script>
+</body>
+
+</html>

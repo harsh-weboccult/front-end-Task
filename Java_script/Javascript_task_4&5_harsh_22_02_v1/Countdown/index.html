@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop Watch</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+     <div class="container">
+        <h1>CountDown</h1>
+        <div>
+            <div class="watch">
+              <div class="timer-container">
+                <div>
+                  <p id="hou">00</p> 
+                   <p>Hour </p>
+                </div>
+                <div>
+                  <p id="min">00</p> 
+                  <p>Minute </p>
+                </div>  
+                <div>
+                  <p id="sec">00</p> 
+                   <p>secound </p>
+                </div>
+                <div>
+                  <p id="m-sec">00</p> 
+                   <p>C-secound </p>
+                </div>
+              </div>
+              
+            </div>
+             <div class="enter-value">
+              <input type="number" name="" placeholder="Enter Time In secound" id="inputNumber">
+            </div>
+          <div class="button watch">
+            <button type="button" id="btn-start" class="start"> Start </button>
+            <button type="button" id="btn-pause" class="pause">Pause</button>
+            <button type="button" id="btn-stop"  class="stop"> Stop </button>
+            <button type="button" id="btn-clear" class="reset"> Reset </button>
+          </div>
+          <div class="enter-value" id="bor">
+            <p id="show-remaining">
+               Enter Time & HITE Start..
+            </p>
+          </div>
+        </div>
+     </div>
+    <script src="./Script.js"></script>
+</body>
+</html>

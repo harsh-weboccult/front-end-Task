@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.end
+{
+    text-align: end !important;
+}
+.center
+{
+    text-align: center !important;
+}
+.flex
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: auto;
+    height: 100vh;
+}
+
+.form-container {
+    margin-top: 100px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.form-title {
+    border: 1px solid black;
+}
+
+.btn-container .btn{
+    font-size: 25px;
+    border: none;
+    width: 33.33%;
+    padding: 10px 0;
+    background: transparent;
+    border-bottom:1px solid black;
+   
+}
+.btn-container .btn-active
+{
+    border:1px solid black;
+    border-bottom: none;
+
+}
+
+.content {
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+/*Form 1 Start*/
+.form1-container
+{   margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    border-bottom: 1px solid black;
+}
+.row
+{
+    margin: 20px 0;
+    font-size: 35px;
+    width: 100%;
+    text-align: end;
+   
+}
+.row input[type='text'],input[type='email'],input[type='number'],input[type='date'],
+.select1,textarea
+{
+    padding: 15px 0;
+     margin-left: 25px;
+    width: 60%;
+    font-size: 25px;
+}
+.row input[type="radio" i] 
+{
+    width: 25px;
+    height: 25px;
+}
+.row .btn
+{
+   text-align: end;
+    background: transparent;
+    padding: 5px;
+    font-size: 30px;  
+}
+
+/*Table*/
+table {
+    width: 100%;
+}

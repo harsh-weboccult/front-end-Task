@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Fliper</title>
+   
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.flex
+{
+    display: flex;
+}
+.justify-content-between
+{
+    justify-content: space-between;
+}
+.justify-content-evenly
+{
+    justify-content: space-evenly;
+}
+.align-item-center
+{
+    align-items: center;
+}
+.row
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper
+{
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+.grid
+{
+    display: grid;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="row">
+            <div class="container">
+                <h1>Enter Color Name:</h1> <input type="text" name="color_name" id="">
+             <button>Click ME </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script >
+  //getElementByTagName and getElementByName id return arrat
+    const color_name=document.getElementsByName('color_name')[0];
+    const body=document.getElementsByTagName('body')[0];
+    const btn=document.getElementsByTagName('button')[0];
+
+    //Adding Event to the btn
+    btn.addEventListener('click',()=>{
+        change_color=color_name.value;
+        console.log(change_color);
+        console.log(isNaN(change_color.value));
+        if(isNaN(change_color.value))
+        {
+            a=`#${change_color}`;
+            console.log(a);
+         body.style.backgroundColor=a;
+        }
+        
+        body.style.backgroundColor=change_color;
+    })
+    </script>
+</body>
+</html>
