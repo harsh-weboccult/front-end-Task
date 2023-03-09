@@ -1,8 +1,6 @@
 # front-end-Task
 
 
-**Table of Contents**
-
   
 ###  [Design Task](https://github.com/harsh-weboccult/front-end-Task/tree/master/design "Design Task")
 ###  [Bootstrep Task](https://github.com/harsh-weboccult/front-end-Task/tree/master/Bootstrep "Bootstrep Task")
