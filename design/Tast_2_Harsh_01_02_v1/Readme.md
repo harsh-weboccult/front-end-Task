@@ -6,3 +6,4 @@ https://www.figma.com/file/oTkJ02RoXScgjWeJHnXQB4/Simple-Personal-Portfolio-Wesb
 ![image](https://user-images.githubusercontent.com/127378016/224024129-86564c34-6512-464b-8ff4-aaf730dbf3f9.png)
 ![image](https://user-images.githubusercontent.com/127378016/224024172-ec85343a-6959-49bb-a6dc-59a08628c213.png)
 ![image](https://user-images.githubusercontent.com/127378016/224024201-7478518a-e775-456c-bd84-121f3cd60d33.png)
+ 
