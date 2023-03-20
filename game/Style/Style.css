@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 60px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.manu1,
+.manu2 {
+    display: flex;
+    flex-direction: column;
+    margin: 0 25px;
+}
+
+.manu1 label,
+.manu2 label {
+    font-size: 25px;
+    padding: 25px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 600px;
+    height: 600px;
+    background-color: pink;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #000;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    list-style: none;
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+
+
+}
+
+.card {
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 5px #000;
+    color: black;
+    width: 70px;
+    height: 70px;
+    position: relative;
+
+}
+
+span {
+    font-size: 50px;
+}
+
+.front-end {
+    position: absolute;
+}
+
+.front-end img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+
+}
+
+.active {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.back-end {
+    position: absolute;
+}
+
+
+.card.flip .front-end {
+    display: block;
+}
+
+.card.flip .back-end {
+    display: none;
+}
+
+
+.button-box {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 12px;
+    margin-right: 12px;
+}
+
+.game-score {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 800px;
+}
+
+.Total {
+    width: 100%;
+    text-align: center;
+}
+
+/*score Style*/
+.time {
+    margin-top: 15px;
+    background-color: pink;
+    padding: 12px;
+}
+
+.scoor {
+    margin-top: 15px;
+    background-color: pink;
+    padding: 12px 80px;
+}
+
+.Total {
+    margin-top: 15px;
+    background-color: pink;
+    padding: 12px;
+}

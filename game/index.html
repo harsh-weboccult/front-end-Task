@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>game</title>
+  <link rel="stylesheet" href="./Style/Style.css">
+</head>
+
+<body>
+  <h1>Memory Game</h1>
+  <div class="row">
+    <div class="manu1">
+      <label><input type="radio" id="radio1" name="radios" onchange="TheamData(this)" value="color"> color </label>
+      <label><input type="radio" id="radio1" name="radios" onchange="TheamData(this)" value="icon">icon</label>
+      <label><input type="radio" id="radio1" name="radios" onchange="TheamData(this)" value="image">image</label>
+    </div>
+    <div class="box">
+      <div class="container" id="gamecontainer">
+
+      </div>
+    </div>
+
+    <div class="manu2">
+      <label><input type="radio" id="radio2" name="radios1" onchange="SizeData(this)" value="small"> 2*3</label>
+      <label><input type="radio" id="radio2" name="radios1" onchange="SizeData(this)" value="midime">3.4</label>
+      <label><input type="radio" id="radio2" name="radios1" onchange="SizeData(this)" value="larger">4.5</label>
+    </div>
+  </div>
+
+
+  <div class="game-score">
+    <div class="time">
+      <span>Time </span><span id="min">00</span><span>:</span> <span id="sec">00</span>
+    </div>
+    <div class="scoor">
+      <span> Score:</span><span id="Score"> 0</span>
+
+    </div>
+    <div class="Total">
+      <span>Number of Click:</span> <span id="Total">00</span>
+
+    </div>
+  </div>
+
+  <div class="button-box">
+
+    <button type="btn" id="btn-reset" class="btn">RESET</button>
+    <button type="btn" id="btn-rendom" class="btn">Rendom</button>
+  </div>
+
+
+
+
+
+
+
+
+
+  <button class="btn " onclick="SelectGame()">Submit</button>
+  <script src="./Script/Script.js"></script>
+</body>
+
+</html>
