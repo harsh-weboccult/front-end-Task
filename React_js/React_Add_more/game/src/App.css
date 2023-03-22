@@ -1,0 +1,70 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.box {
+    width: fit-content;
+    border: 2px solid black;
+    padding: 18px;
+    margin-top: 10px;
+}
+
+button
+{
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+}
+input
+{
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+.row {
+    display: flex;
+    
+    padding: 50px;
+}
+.btn-add , .btn-submit
+{
+    color: white;
+    background-color: green;
+  
+}
+.btn-child
+{
+    color: white;
+    background-color: gray;
+}
+.btn-delete
+{ 
+background-color: red;
+
+}
+.right
+{
+    margin-left: 200px;
+    width: 40vw;
+}
+.box1
+{
+    border: 1px solid black;
+    width: 100%;
+    padding: 25px;
+    margin: 10px 0;
+}
+h1{
+    border-bottom: 1px solid black;
+}
+.small-box
+{
+    display: flex;
+    padding: 10px;
+    border: 1px solid black;
+}
+.small-box .left
+{
+    height: fit-content;
+}
