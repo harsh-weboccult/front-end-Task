@@ -32,7 +32,9 @@ background-color: red;
 
 }
 .row
-{
+{ 
+    max-width: 1140px;
+    margin: auto;
     display: flex;
     gap: 50px;
     justify-content: center;
@@ -41,7 +43,7 @@ background-color: red;
 
 .left
 {
- width: 40vw;
+ width: 70vw;
 }
 .right{
 width: 40vw;

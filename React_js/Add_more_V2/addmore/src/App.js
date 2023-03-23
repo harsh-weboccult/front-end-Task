@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import './App.css';
 import data from './Data'
-let count=1;
+import Swal from 'sweetalert2';
+let count = 1;
 function App() {
   const [fileData, setFileData] = useState([{ id: 0, value: "", child: [] }]);
 
@@ -15,14 +16,18 @@ function App() {
     // console.log(fileData);
   }
 
+
+
+
   //Add Child Function
   const addChild = (e, id) => {
+
     const newData = fileData.map((ele) => {
-     count= count+1;
+      count = count + 1;
       if (ele.id === id) {
         ele.child.push(
           {
-            id: ele.id + "." +count,
+            id: ele.id + "." + count,
             Subtitle: "",
             value: " "
           });
@@ -81,16 +86,34 @@ function App() {
   const deleteChild = (ChildId, ParentId) => {
     const ddata = [...fileData];
 
-    ddata.map((ele) => {
-      if (ele.id === ParentId) {
-           const newData = ele.child.filter((element) =>
-            element.id !== ChildId
-        )
-        console.log("new List",newData);
-        ele.child=newData;
+    Swal.fire({
+      title: 'Do you want Delete Chield?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Don't Delete`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire('Delete!', '', 'success');
+        ddata.map((ele) => {
+          if (ele.id === ParentId) {
+            const newData = ele.child.filter((element) =>
+              element.id !== ChildId
+            )
+            console.log("new List", newData);
+            ele.child = newData;
+          }
+        })
+        setFileData(ddata);
+
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+        return;
       }
     })
-    setFileData(ddata);
+
+
     console.log("deleted", ddata);
   }
 
@@ -125,7 +148,7 @@ function App() {
 
                       </div>
                     </>}
-                   </div>
+                </div>
 
               </div>
             ))
