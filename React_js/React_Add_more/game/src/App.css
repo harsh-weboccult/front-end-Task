@@ -27,22 +27,22 @@ input
     
     padding: 50px;
 }
-.btn-add , .btn-submit
-{
-    color: white;
-    background-color: green;
-  
-}
-.btn-child
-{
-    color: white;
-    background-color: gray;
-}
-.btn-delete
-{ 
-background-color: red;
+    .btn-add , .btn-submit
+    {
+        color: white;
+        background-color: green;
+    
+    }
+    .btn-child
+    {
+        color: white;
+        background-color: gray;
+    }
+    .btn-delete
+    { 
+    background-color: red;
 
-}
+    }
 .right
 {
     margin-left: 200px;
