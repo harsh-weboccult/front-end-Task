@@ -1,38 +1,39 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-button
-{
+
+button {
     padding: 7px 20px;
     border-radius: 5px;
     color: white;
     font-size: 20px;
 }
-input
-{
+
+input {
     padding: 7px 20px;
     border-radius: 5px;
 }
-.btn-add , .btn-submit
-{
+
+.btn-add,
+.btn-submit {
     color: white;
     background-color: green;
 
 }
-.btn-child
-{
+
+.btn-child {
     color: white;
     background-color: gray;
 }
-.btn-delete
-{ 
-background-color: red;
+
+.btn-delete {
+    background-color: red;
 
 }
-.row
-{ 
+
+.row {
     max-width: 1140px;
     margin: auto;
     display: flex;
@@ -41,47 +42,41 @@ background-color: red;
     margin-top: 50px;
 }
 
-.left
-{
- width: 70vw;
+.left {
+    width: 70vw;
 }
-.right{
-width: 40vw;
+
+.right {
+    width: 40vw;
 }
-.box
-{
+
+.box {
     border: 1px solid black;
     padding: 25px;
 }
-.box .parent
-{
-  margin-bottom: 15px;
+
+.box .parent {
+    margin-bottom: 15px;
 }
-.box .child
-{
+
+.box .child {
     border: 1px solid yellow;
-   padding: 12px;
+    padding: 12px;
 }
 
 /* Specification Section*/
-.title
-{
+.title {
     border: 1px solid black;
 }
-.title h3{
+
+.title h3 {
     padding: 10px 5px;
-    border-bottom:1px solid black ;
+    border-bottom: 1px solid black;
 }
-.table_value
-{
- 
-  
-}
-td
-{
+
+
+
+td {
     padding: 10px;
     width: 400px;
-}
-.table_value tr{
-   
 }

@@ -37,15 +37,16 @@ function App() {
         return ele;
       }
 
-    })
+    }
+    )
     setFileData(newData);
   }
 
   //Update Parent
-  const handleSubmit = (perentId) => {
-    console.log(perentId);
+  const handleSubmit = (parentId) => {
+    console.log(parentId);
     setFileData(fileData.map((ele) => (
-      ele.id === perentId ? { ...ele, value: titleData } : ele
+      ele.id === parentId ? { ...ele, value: titleData } : ele
     )))
     console.log(fileData);
   }
@@ -54,23 +55,31 @@ function App() {
   //Update Child Function
   const updateSubtitle = (e, ChildId, ParentId) => {
     const sdata = [...fileData]
-    sdata.map((ele) => {
+    sdata.forEach((ele) => {
       if (ele.id === ParentId) {
         ele.child.map((element) => {
           if (element.id === ChildId) {
             element.Subtitle = e.target.value;
           }
-        })
+
+        }
+        )
+
       }
+
     })
     setFileData(sdata);
     console.log("updated", sdata);
   }
+
+
+
+  //Update parent 
   const updatetitle = (e, ChildId, ParentId) => {
     const vdata = [...fileData]
-    vdata.map((ele) => {
+    vdata.forEach((ele) => {
       if (ele.id === ParentId) {
-        ele.child.map((element) => {
+        ele.child.forEach((element) => {
           if (element.id === ChildId) {
             element.value = e.target.value;
           }
@@ -96,7 +105,7 @@ function App() {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire('Delete!', '', 'success');
-        ddata.map((ele) => {
+        ddata.forEach((ele) => {
           if (ele.id === ParentId) {
             const newData = ele.child.filter((element) =>
               element.id !== ChildId
@@ -166,10 +175,12 @@ function App() {
                     <table className='table_value' border={1}>
                       {item.child.map(element =>
                       (
-                        <tr key={element.id}>
-                          <td >{element.Subtitle}</td>
-                          <td>{element.value}</td>
-                        </tr>
+                        <tbody key={element.id}>
+                          <tr>
+                            <td >{element.Subtitle}</td>
+                            <td>{element.value}</td>
+                          </tr>
+                        </tbody>
                       ))}
                     </table>
 
