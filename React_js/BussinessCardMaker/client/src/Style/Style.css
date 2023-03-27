@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-131921: #131921;
+    --color-3b4149: #3b4149;
+    --color-febd69: #febd69;
+    --color-232f3e: #232f3e;
+    --color-bf4800: #bf4800;
+    --color-f5f5f7: #f5f5f7;
+    --color-ededed: #ededed;
+    --color-777777: #777777;
+    --color-1c1c1b: #1c1c1b;
+}
+
+.home-wrapper {
+    background-color: var(--color-ededed);
+}
+
+.main-layout {
+    height: 100vh;
+
+}
+
+.main-layout .left {
+    position: relative;
+}
+
+.main-layout .right {
+    position: relative;
+}
+
+.space1 {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 12px;
+}
+
+.main-layout .top {
+    position: absolute;
+    top: 0;
+
+}
+
+.row {
+    padding: 50px;
+}
+
+.left,
+.right {
+    background-color: white;
+    height: 80vh;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form 1 */
+.form-1 {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-1 button {
+    margin-bottom: 25px;
+}
+
+/*form -2*/
+.form-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/*Card Design Start*/
+.card {
+    width: 450px;
+    height: 250px;
+
+}
+
+.black {
+    z-index: 1000;
+    background-color: black;
+    color: white;
+}
+
+.white {
+    background-color: white;
+}
+
+.front-card .card_right {
+    border-left: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.front-card .card_right>div {
+
+    font-size: 11px;
+}
+
+.front-card .card_right .bottom {
+    margin-top: 25px;
+}
+
+.front-card .card_right .bottom i {
+    padding-right: 7px;
+}
+
+.logo {
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+.backpart .box {
+    margin: auto;
+    width: 150px;
+}
+
+.space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    overflow: hidden !important;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+   
+    #print *,
+    #print1 * {
+        visibility: visible;
+    }
+
+
+}
+
+.amimated-box {
+    right: -5px;
+    bottom: 0;
+    opacity: 0.5;
+    transform: rotate(25deg);
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.amimated-box1 {
+    left: -5px;
+    top: -25px;
+    opacity: 0.3;
+    transform: rotate(25deg);
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    overflow: hidden;
+}
+
+.code {
+    width: 100px;
+    margin-left: 15px;
+    opacity: 1;
+
+    margin-top: 20px;
+}
