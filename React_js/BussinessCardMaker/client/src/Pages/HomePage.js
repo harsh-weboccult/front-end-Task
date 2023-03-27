@@ -165,7 +165,7 @@ const HomePage = () => {
                                                             <input type="radio" name="color" id="" value="black" onChange={setTheamColor} />black
                                                         </div>
                                                     ) :
-                                                    (
+                                                       (
                                                         <div className="color_picker">
                                                             BackGround Color:<input type="color" name="Background_Color" value={colorTheam.Background_Color} id="" onChange={(e) => setcolor(e)} />
                                                         </div>
