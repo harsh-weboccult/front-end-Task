@@ -140,7 +140,7 @@
     body * {
         visibility: hidden;
     }
-   
+
     #print *,
     #print1 * {
         visibility: visible;
