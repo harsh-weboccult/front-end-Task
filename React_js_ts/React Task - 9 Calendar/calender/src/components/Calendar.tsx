@@ -19,7 +19,7 @@ const Calendar = ({ date = new Date() }: { date: Date }) => {
   /** for generating month as a matrix  */
   const matrix = generateMatrix(activeDate);
 
-  let row = [];
+  let row :any= [];
 
   row = matrix.map((row, rowindex) => {
     let rowItem = row.map((item: any, itemIndex) => {
