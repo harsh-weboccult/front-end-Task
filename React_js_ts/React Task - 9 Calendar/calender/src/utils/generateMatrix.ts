@@ -1,4 +1,4 @@
-import {  daysInEachMonth } from "./const";
+import { daysInEachMonth } from "./constant.data";
 
 export default function generateMatrix(currentDate: Date) {
   // making 2d Matrix

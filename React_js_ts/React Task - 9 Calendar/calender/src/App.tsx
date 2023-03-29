@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import "./App.css";
-import Calendar from "./components/Calendar";
+import React from "react";
+import Calendar from "./components/Calendar.component";
 
 function App() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [value, setValue] = useState(new Date());
- 
   return (
     <>
-      <Calendar date={value} />
-     
+      <Calendar date={new Date()} />
     </>
   );
 }

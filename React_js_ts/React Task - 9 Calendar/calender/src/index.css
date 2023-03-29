@@ -1,13 +1,106 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ededed;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h2 {
+  
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: lighter;
+  color: #bf822f;
+
+}
+
+.title {
+  width: inherit;
+  text-align: center;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.calender__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  width: 600px;
+  padding: 50px;
+  background-color: white;
+  border-radius: 40px;
+}
+
+.calender__top {
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #bf822f;
+  padding: 0 12px;
+  border-radius: 12px;
+}
+
+.calender__container {
+  margin-top: 15px;
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.calender__mid {
+
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active {
+  background-color: #bf822f;
+  color: white;
+}
+
+
+.calender__mid span {
+
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+
+
+}
+
+.calender__mid span:hover {
+  transition: 0.5s;
+  background-color: #bf822f;
+  opacity: 0.5;
+}
+
+.btn {
+  padding: 12px 25px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #bf822f;
+}
+
+.btn__find {
+  padding: 12px 40px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #bf822f;
+}
+.calender__top button
+{
+  width: 35px;
+  height: 35px;
 }
