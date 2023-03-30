@@ -93,6 +93,13 @@ h2 {
   border: 1px solid #bf822f;
 }
 
+button:hover{
+  transition: 0.5s ease-in-out;
+  background-color: #bf822f ;
+  color: white;
+    border: 1px solid white;
+}
+
 .btn__find {
   padding: 12px 40px;
   cursor: pointer;

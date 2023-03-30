@@ -14,15 +14,10 @@ const CalenderTop = ({ activeDate, setActiveDate }: Props) => {
     setActiveDate(newDate);
   };
 
- 
-
   /** for previous month */
   const prevMonth = (n: number) => {
-    //  console.log("activeDate", activeDate.getMonth());
     const toSetMonth = activeDate.getMonth() - 1;
-    //  console.log("toSetMonth", toSetMonth);
     const date = new Date(activeDate);
-
     date.setMonth(toSetMonth);
     setActiveDate(date);
     console.log(new Date(activeDate.setMonth(activeDate.getMonth())), "month");

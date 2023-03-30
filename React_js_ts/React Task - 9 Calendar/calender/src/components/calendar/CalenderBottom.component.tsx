@@ -7,10 +7,10 @@ const CurrentDate1 = new Date();
 interface props {
   setActiveDate: React.Dispatch<React.SetStateAction<Date>>;
   matrix: (number | string)[][];
-  sethighlightDate: React.Dispatch<React.SetStateAction<Date>>;
+  setHighLightDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const CalenderBottom = ({ setActiveDate, matrix, sethighlightDate }: props) => {
+const CalenderBottom = ({ setActiveDate, matrix, setHighLightDate }: props) => {
   const [day, setDay] = useState<any>();
   const [month, setMonth] = useState<number>(-1);
   const [year, setYear] = useState<number>(1970);
@@ -18,7 +18,7 @@ const CalenderBottom = ({ setActiveDate, matrix, sethighlightDate }: props) => {
   /** push to current Data */
   const moveToCurrentDate = () => {
     setActiveDate(CurrentDate1);
-    sethighlightDate(CurrentDate1);
+    setHighLightDate(CurrentDate1);
   };
 
   const moveToSpecificDate = () => {
@@ -35,11 +35,9 @@ const CalenderBottom = ({ setActiveDate, matrix, sethighlightDate }: props) => {
       console.log("month", new Date(month));
     } else {
       setActiveDate(new Date(year, month, day));
-      sethighlightDate(new Date(year, month, day));
+      setHighLightDate(new Date(year, month, day));
     }
   };
-  
-  
 
   const onMonthChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMonth(+e.target.value);
@@ -79,7 +77,6 @@ const CalenderBottom = ({ setActiveDate, matrix, sethighlightDate }: props) => {
           return (
             <option key={index} value={index}>
               {month}
-              {index}
             </option>
           );
         })}

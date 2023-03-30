@@ -8,7 +8,7 @@ import CalenderBottom from "../components/calendar/CalenderBottom.component";
 
 const Calendar = ({ date = new Date() } : { date: Date }) => {
   const [activeDate, setActiveDate] = useState<Date>(date);
-  const [highlightDate, sethighlightDate] = useState(new Date());
+  const [highlightDate, setHighLightDate] = useState(new Date());
   
   
  console.log(activeDate,"for active Date");
@@ -88,7 +88,7 @@ const Calendar = ({ date = new Date() } : { date: Date }) => {
           <CalenderBottom
             setActiveDate={setActiveDate}
             matrix={matrix}
-            sethighlightDate={sethighlightDate}
+            setHighLightDate={setHighLightDate}
           />
           {/* FOOTER */}
         </div>
