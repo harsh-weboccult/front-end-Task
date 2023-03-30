@@ -104,3 +104,11 @@ h2 {
   width: 35px;
   height: 35px;
 }
+
+select
+{
+   padding: 12px 20px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #bf822f;
+}
