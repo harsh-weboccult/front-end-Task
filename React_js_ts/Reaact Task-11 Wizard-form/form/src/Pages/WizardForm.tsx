@@ -1,43 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { Button, Tabs } from "antd";
+import React, { useState } from "react";
+import { Button, Col, Divider, Row, Tabs } from "antd";
 import Form1 from "../components/form/Form1.component";
 import TabPane from "antd/es/tabs/TabPane";
 import Form2 from "../components/form/Form2.component";
 import Form3 from "../components/form/Form3.component";
-import { formdata } from "../utils/Model.data";
-import { Space, Table, Tag } from "antd";
+import { FormTypes, formdata } from "../utils/Model.data";
+import { Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import { Input } from "antd";
+import moment from "moment";
 
- 
+interface props {
+  formData: formdata;
+  setFormData: React.Dispatch<React.SetStateAction<formdata>>;
+  updateData: formdata | undefined;
+  setUpdateData: React.Dispatch<React.SetStateAction<formdata | undefined>>;
+  initianvalue: any;
+}
 
-
-const WizardForm: React.FC = () => {
+const WizardForm = ({
+  formData,
+  setFormData,
+  updateData,
+  setUpdateData,
+  initianvalue,
+}: props) => {
+  const [updatehHandleDelete, setupdatehHandleDelete] =
+    useState<boolean>(false);
   const [activeKey, setActiveKey] = useState("1");
-  const [formData, setFormData] = useState<formdata>({
-    id:Date.now(),
-    firstName: "",
-    lastName: "",
-    gender: "",
-    email: "",
-    contactNo: null,
-    dob: "",
-    favouriteSport: "",
-    aboutMe: "",
-    isChecked: false,
-  });
   const [showData, setshowData] = useState<any>([]);
-  //const showData = { ...formData };
+
+  const [formStates, setFormStates] = useState({
+    form1: [],
+    form2: [],
+    form3: [],
+  });
 
   const onKeyChange = (key: string) => {
     setActiveKey(key);
   };
+  const [searchValue, setsearchValue] = useState("");
 
- 
+  const FilterByNameInput = (
+    <Input.Search
+      placeholder="Search By firstName and email"
+      onSearch={(value) => {
+        setsearchValue(value);
+      }}
+      onChange={(e) => {
+        setsearchValue(e.target.value);
+        console.log(e.target.value);
+      }}
+    />
+  );
+
+  const handleDelete = (record: formdata) => {
+    var deleteArray: formdata[] = [];
+    deleteArray = showData.filter((element: formdata) => {
+      return record.id !== element.id;
+    });
+    setshowData(deleteArray);
+    setUpdateData({ ...initianvalue });
+    console.log(formData);
+  };
+
+  const showModal = (record: any) => {
+    setUpdateData({ ...record });
+    setupdatehHandleDelete(false);
+  };
+
   const columns: ColumnsType<formdata> = [
+    {
+      title: "id",
+      dataIndex: "id",
+      key: "id",
+    },
     {
       title: "firstName",
       dataIndex: "firstName",
       key: "firstName",
+      filteredValue: [searchValue],
+      onFilter: (value: any, record): any => {
+        return (
+          String(record.firstName)
+            .toLocaleLowerCase()
+            ?.includes(value.toLocaleLowerCase()) ||
+          String(record.email)
+            .toLocaleLowerCase()
+            ?.includes(value.toLocaleLowerCase()) ||
+          String(record.contactNo)
+            .toLocaleLowerCase()
+            ?.includes(value.toLocaleLowerCase())
+        );
+      },
     },
     {
       title: "lastName",
@@ -55,14 +110,17 @@ const WizardForm: React.FC = () => {
       key: "email",
     },
     {
-      title: "contect Number",
+      title: "contact Number",
       dataIndex: "contactNo",
-      key: "contectNO",
+      key: "contactNO",
     },
     {
       title: "dob",
       dataIndex: "dob",
       key: "dob",
+      render: (text, record) => (
+        <span>{moment(record.dob).format("DD-MM-YYYY")}</span>
+      ),
     },
     {
       title: "favourite Sport",
@@ -82,12 +140,35 @@ const WizardForm: React.FC = () => {
       ),
     },
     {
+      title: "Hour Stay",
+      dataIndex: "hour",
+      key: "hour",
+    },
+    {
+      title: "Zip-code",
+      dataIndex: "zipCode",
+      key: "zipCode",
+    },
+    {
+      title: "Ip Address",
+      dataIndex: "ipAddress",
+      key: "ipAddress",
+    },
+    {
+      title: "Paid Money",
+      dataIndex: "money",
+      key: "money",
+    },
+
+    {
       title: "Edit",
       key: "Edit",
       dataIndex: "tags",
-      render: (text, record) => (
+      render: (text, record: any) => (
         <>
-          <Button type="primary"> Edit </Button>
+          <Button type="primary" onClick={() => showModal(record)}>
+            Edit
+          </Button>
         </>
       ),
     },
@@ -97,59 +178,62 @@ const WizardForm: React.FC = () => {
       dataIndex: "tags",
       render: (text, record) => (
         <>
-          <Button type="primary" danger >
-            Delete
-          </Button>
+          {updatehHandleDelete && (
+            <Button type="primary" danger onClick={() => handleDelete(record)}>
+              Delete
+            </Button>
+          )}
         </>
       ),
     },
-    // {
-    //   title: "Action",
-    //   key: "action",
-    //   render: (_, record) => (
-    //     <Space size="middle">
-    //       <a>Invite {record.name}</a>
-    //       <a>Delete</a>
-    //     </Space>
-    //   ),
-    // },
   ];
+
+  const formProps: FormTypes = {
+    setFormData: setFormData,
+    formData: formData,
+    setActiveKey: setActiveKey,
+    setshowData: setshowData,
+    showData: showData,
+    formStates: formStates,
+    updateData: updateData,
+    setFormStates: setFormStates,
+    setupdatehHandleDelete: setupdatehHandleDelete,
+    setUpdateData: setUpdateData,
+  };
 
   return (
     <>
-    <h1>Wizard Form</h1>
-    
-       <Tabs
-        defaultActiveKey="1"
-        centered
-        activeKey={activeKey}
-        onChange={onKeyChange}
-      >
-        <TabPane tab="Form-1" key="1" disabled >
-          <Form1
-            setFormData={setFormData}
-            formData={formData}
-            setActiveKey={setActiveKey}
-          />
-        </TabPane>
-        <TabPane tab="Form-2" key="2" disabled>
-          <Form2
-            setFormData={setFormData}
-            formData={formData}
-            setActiveKey={setActiveKey}
-          />
-        </TabPane>
-        <TabPane tab="Form-3" key="3" disabled>
-          <Form3
-            setFormData={setFormData}
-            formData={formData}
-            setActiveKey={setActiveKey}
-            setshowData={setshowData}
-          />
-        </TabPane>
-       </Tabs>
+      <h1>Wizard Form</h1>
+
+      <div className="top__form">
+        <Tabs
+          defaultActiveKey="1"
+          centered
+          activeKey={activeKey}
+          onChange={onKeyChange}
+        >
+          <TabPane tab="Form-1" key="1" disabled>
+            <Form1 {...formProps} />
+          </TabPane>
+          <TabPane tab="Form-2" key="2" disabled>
+            <Form2 {...formProps} />
+          </TabPane>
+          <TabPane tab="Form-3" key="3" disabled>
+            <Form3 {...formProps} />
+          </TabPane>
+        </Tabs>
+      </div>
+
+      <div className="bottom__table">
+        <Divider orientation="left">Data Table</Divider>
+        <Row gutter={16}>
+          <Col className="gutter-row" offset={16} span={8}>
+            <div>{FilterByNameInput}</div>
+          </Col>
+        </Row>
         <Table columns={columns} dataSource={showData} />
-       </>
+      </div>
+    </>
   );
 };
 

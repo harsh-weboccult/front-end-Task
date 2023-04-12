@@ -1,60 +1,58 @@
-import React from "react";
-import { formdata } from "../../utils/Model.data";
+/* eslint-disable no-template-curly-in-string */
+import React, { useState } from "react";
+import { FormTypes, formdata, validateMessages } from "../../utils/Model.data";
 import { Button, Col, Form, Input, Radio, Row } from "antd";
 import FormItem from "antd/es/form/FormItem";
 
-interface props {
-  setFormData: React.Dispatch<React.SetStateAction<formdata>>;
-  formData: formdata;
-  setActiveKey: React.Dispatch<React.SetStateAction<string>>;
-}
-const Form1 = ({ setFormData, formData, setActiveKey }: props) => {
+let temp1: any;
+
+const Form1 = ({
+  setFormData,
+  formData,
+  setActiveKey,
+  updateData,
+  formStates,
+  setFormStates,
+  setUpdateData,
+}: FormTypes) => {
   const [form] = Form.useForm();
-  const validateMessages = {
-    required: "${label} is required!",
-    types: {
-      redio: "${label} is not a valid email!",
-      email: "${label} is not a valid email!",
-      number: "${label} is not a valid number!",
-    },
-    number: {
-      range: "${label} must be between ${min} and ${max}",
-    },
-  };
+  temp1 = form;
+
   const onFinish = (values: any) => {
-   
     setFormData({
       ...formData,
       firstName: values.firstName,
       lastName: values.lastName,
       gender: values.gender,
     });
-     setActiveKey("2");
+    // updateData &&
+    //   setUpdateData({ ...updateData, firstName: "", lastName: "", gender: "" });
+    setFormStates({ ...formStates, form1: temp1 });
+    setActiveKey("2");
   };
+
   return (
     <>
       <Row style={{ marginTop: "30px" }} justify="center" align="middle">
         <Col span={8}>
           <Form
-            form={form}
             layout="horizontal"
             validateMessages={validateMessages}
             onFinish={onFinish}
           >
             <FormItem
               label="First Name"
-              
               name="firstName"
               rules={[{ required: true }]}
             >
-              <Input placeholder="Enter First Name" />
+              <Input placeholder={updateData?.firstName} />
             </FormItem>
             <FormItem
               label="Last Name"
               name="lastName"
               rules={[{ required: true }]}
             >
-              <Input  placeholder="Enter Last Name"/>
+              <Input placeholder={updateData?.lastName} />
             </FormItem>
             <FormItem label="Gender" name="gender" rules={[{ required: true }]}>
               <Radio.Group>
