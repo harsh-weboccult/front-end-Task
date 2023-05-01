@@ -1,3 +1,7 @@
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .top-btn-container {
   padding: 25px;
 }
@@ -9,3 +13,42 @@
 .modal1 {
   padding-top: 50px;
 }
+
+.scrool {
+  width: 100%;
+  overflow: scroll;
+
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-btn {
+  margin-right: 15px;
+}
+
+.input-row {
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* 
+ <Input className="table-data"
+ type="number"
+
+ value= {
+   parseFloat(props.item.categories[rindex]?.values[index]?.typeValue || 0)
+ }
+
+ readOnly= {
+   editbtn===0 ? true: false
+ }
+
+ onChange= {
+   (e)=>updateRow(e, rindex, index)
+ }
+
+ /> */

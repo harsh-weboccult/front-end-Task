@@ -1,20 +1,29 @@
-import { DeleteFilled, DeleteOutlined } from "@ant-design/icons";
-import { Button, Input, Modal } from "antd";
+import {
+  DeleteFilled,
+  DeleteOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
+import { Button, Form, Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { FormProps } from "../util/Model";
+import FormItem from "antd/es/form/FormItem";
 
+let count = 0;
 export default function TableProp(props: FormProps) {
   const [editbtn, setEditbtn] = useState(0);
   const [formdata, setFormdata] = useState({ category: "", type: "" });
   const [openCategory, setOpen] = useState(false);
   const [openType, setOpenType] = useState(false);
+  const [openSubCategory, setOpenSubCategory] = useState(false);
   const handleOpenCategory = () => setOpen(true);
   const handleCloseCategory = () => setOpen(false);
   const handleOpenType = () => setOpenType(true);
   const handleCloseType = () => setOpenType(false);
   const [prevState, setPrevState] = useState(props.item);
-  const data: any = ["No data available"];
+  const [form] = Form.useForm();
+
+  const data: any = ["No data available in this category"];
 
   var columns: any = [];
 
@@ -28,7 +37,12 @@ export default function TableProp(props: FormProps) {
               <>
                 {row.category}
                 {editbtn === 1 && (
-                  <DeleteFilled onClick={() => deleteRow(index)}></DeleteFilled>
+                  <div className="input-row">
+                    <DeleteFilled
+                      onClick={() => deleteRow(index)}
+                    ></DeleteFilled>
+                    <PlusCircleOutlined onClick={() => addNewSubRow(row)} />
+                  </div>
                 )}
               </>
             ),
@@ -47,21 +61,20 @@ export default function TableProp(props: FormProps) {
     setEditbtn(1);
   };
 
-  // const handleOk = () => {
-  //   addNewRow();
-  // };
-
   function addNewRow(e: any) {
+    count = count + 1;
     e.preventDefault();
     const updatedItem = {
       ...props.item,
       categories: [
         ...props.item.categories,
         {
+          id: props.item.id + count,
           category: formdata.category,
           values: props.item.types.map((it: { type: string }) => {
             return { typeName: it.type, typeValue: 0 };
           }),
+          Subcategory: [],
         },
       ],
     };
@@ -69,11 +82,47 @@ export default function TableProp(props: FormProps) {
       tableItem.id === props.item.id ? updatedItem : tableItem
     );
     props.setTableData(updatedTableData);
+    setFormdata({ ...formdata, category: "  " });
     handleCloseCategory();
   }
 
-  function addNewType(e: any) {
-    e.preventDefault();
+  function addNewSubRow(row: any) {
+    console.log(row, "row");
+    count = count + 1;
+    const updatedItem = {
+      ...props.item,
+      categories: props.item.categories.map((category: any) => {
+        if (category.id === row.id) {
+          return {
+            ...category,
+            Subcategory: [
+              ...category.Subcategory,
+              {
+                id: count + 90,
+                category: formdata.category,
+                values: props.item.types.map((it: { type: string }) => ({
+                  typeName: it.type,
+                  typeValue: 0,
+                })),
+                subcategories: [],
+              },
+            ],
+          };
+        } else {
+          return category;
+        }
+      }),
+    };
+    const updatedTableData = props.tabledata.map((tableItem: any) =>
+      tableItem.id === props.item.id ? updatedItem : tableItem
+    );
+    props.setTableData(updatedTableData);
+    setFormdata({ ...formdata, category: "  " });
+    handleCloseCategory();
+  }
+
+  function addNewType() {
+    // e.preventDefault();
     const updatedValues = props.item.types.concat({ type: formdata.type });
     const updatedCategories = props.item.categories.map((category: any) => {
       return {
@@ -82,6 +131,7 @@ export default function TableProp(props: FormProps) {
           typeName: formdata.type,
           typeValue: 0,
         }),
+        Subcategory: [],
       };
     });
     const updatedItem = {
@@ -93,6 +143,8 @@ export default function TableProp(props: FormProps) {
       tableItem.id === props.item.id ? updatedItem : tableItem
     );
     props.setTableData(updatedTableData);
+    setFormdata({ ...formdata, type: "" });
+    form.resetFields();
     handleCloseType();
   }
 
@@ -195,6 +247,7 @@ export default function TableProp(props: FormProps) {
       style: {
         paddingLeft: "8px",
         paddingRight: "8px",
+        fontSize: "12px",
       },
     },
   };
@@ -211,63 +264,70 @@ export default function TableProp(props: FormProps) {
   return (
     <>
       <div className="table-header">
-        <h1 className="table-heading">
-          {props.tablename}{" "}
+        <div className="flex">
+          <h1 className="table-heading">
+            {props.tablename}{" "}
+            {editbtn === 1 && (
+              <>
+                <DeleteFilled
+                  style={{ color: "red" }}
+                  onClick={() => deletetable()}
+                >
+                  delete
+                </DeleteFilled>
+              </>
+            )}
+          </h1>
+
           {editbtn === 1 && (
-            <>
-              <DeleteFilled
-                style={{ color: "red" }}
-                onClick={() => deletetable()}
+            <div>
+              <Button
+                className="edit-btn"
+                onClick={handleOpenCategory}
+                color="secondary"
               >
-                delete
-              </DeleteFilled>
-            </>
+                Add Category Row
+              </Button>
+              <Button className="edit-btn" onClick={() => handleOpenType()}>
+                Add New Type
+              </Button>
+              <Button
+                className="edit-btn"
+                onClick={() => saveEdit()}
+                color="success"
+              >
+                Save
+              </Button>
+              <Button
+                className="edit-btn"
+                onClick={() => cancelEdit()}
+                color="error"
+              >
+                Cancel
+              </Button>
+            </div>
           )}
-        </h1>
 
-        {editbtn === 1 && (
-          <div>
-            <Button
-              className="edit-btn"
-              onClick={handleOpenCategory}
-              color="secondary"
-            >
-              Add Category Row
+          {editbtn === 0 && (
+            <Button className="edit-btn" onClick={setEditList}>
+              Edit
             </Button>
-            <Button className="edit-btn" onClick={() => handleOpenType()}>
-              Add New Type
-            </Button>
-            <Button
-              className="edit-btn"
-              onClick={() => saveEdit()}
-              color="success"
-            >
-              Save
-            </Button>
-            <Button
-              className="edit-btn"
-              onClick={() => cancelEdit()}
-              color="error"
-            >
-              Cancel
-            </Button>
-          </div>
-        )}
-
-        {editbtn === 0 && (
-          <Button className="edit-btn" onClick={setEditList}>
-            Edit
-          </Button>
-        )}
+          )}
+        </div>
       </div>
       <br />
+      <div className="table-Footer">
+        <DataTable
+          columns={columns}
+          data={
+            props.item.categories.length === 0 ? data : props.item.categories
+          }
+          highlightOnHover
+          customStyles={customStyles}
+        />
+      </div>
 
-      <DataTable
-        columns={columns}
-        data={props.item.categories.length === 0 ? data : props.item.categories}
-        highlightOnHover
-        customStyles={customStyles}
-      />
+      {/* this set input feild category */}
       {props.item.categories.length !== 0
         ? props.item.types.forEach((iitem: any, index: number) => {
             columns.push({
@@ -287,17 +347,10 @@ export default function TableProp(props: FormProps) {
                 </p>
               ),
               selector: (row: any) => row.iitem.type,
-
               cell: (row: any, rindex: any) => (
-                <Input
-                  className="table-data"
-                  type="number"
-                  value={parseFloat(
-                    props.item.categories[rindex]?.values[index]?.typeValue || 0
-                  )}
-                  disabled={editbtn === 0 ? true : false}
-                  onChange={(e) => updateRow(e, rindex, index)}
-                />
+                <>
+                  <p className="table-data">0</p>
+                </>
               ),
             });
           })
@@ -322,12 +375,7 @@ export default function TableProp(props: FormProps) {
             });
           })}
       {/* //Category Dialog */}
-      <Modal
-        style={{ padding: "25px" }}
-        className="modal1"
-        open={openCategory}
-        onCancel={handleCloseCategory}
-      >
+      <Modal style={{ padding: "25px" }} className="modal1" footer={null}>
         <form onSubmit={(e: any) => addNewRow(e)}>
           <Input
             autoFocus
@@ -340,27 +388,60 @@ export default function TableProp(props: FormProps) {
             required
           />
 
-          <button type="submit">Create</button>
+          <Button htmlType="submit">Create</Button>
         </form>
       </Modal>
       {/* //Type Dialog */}
-      <Modal
-        closable={false}
-        footer={null}
-        open={openType}
-        onCancel={handleCloseType}
-      >
-        <form onSubmit={(e) => addNewType(e)}>
-          <Input
-            autoFocus
-            id="name"
-            type="text"
-            onChange={(e) => setFormdata({ ...formdata, type: e.target.value })}
-            required
-          />
+      <Modal footer={null} open={openType} onCancel={handleCloseType}>
+        <Form
+          form={form}
+          onFinish={() => {
+            addNewType();
+            form.resetFields();
+          }}
+        >
+          <FormItem>
+            <Input
+              autoFocus
+              name="type"
+              id="name"
+              type="text"
+              value={formdata.type}
+              onChange={(e) =>
+                setFormdata({ ...formdata, type: e.target.value })
+              }
+              required
+            />
+          </FormItem>
 
-          <button type="submit">Create</button>
-        </form>
+          <Button htmlType="submit">Create</Button>
+        </Form>
+      </Modal>
+
+      <Modal footer={null} open={openSubCategory} onCancel={handleCloseType}>
+        <Form
+          form={form}
+          onFinish={() => {
+            addNewType();
+            form.resetFields();
+          }}
+        >
+          <FormItem>
+            <Input
+              autoFocus
+              name="type"
+              id="name"
+              type="text"
+              value={formdata.type}
+              onChange={(e) =>
+                setFormdata({ ...formdata, type: e.target.value })
+              }
+              required
+            />
+          </FormItem>
+
+          <Button htmlType="submit">Create</Button>
+        </Form>
       </Modal>
     </>
   );
