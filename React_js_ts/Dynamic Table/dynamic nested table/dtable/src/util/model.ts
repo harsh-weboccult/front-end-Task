@@ -3,6 +3,7 @@ export interface TableData {
   categoryname: string;
   tablename: string;
   types: { type: string }[];
+  rowdata?: {}[];
 }
 
 export interface FormContent {

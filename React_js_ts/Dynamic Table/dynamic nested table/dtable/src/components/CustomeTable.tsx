@@ -1,9 +1,10 @@
 import { Button, Modal, Space, Switch, Table } from "antd";
-import { title } from "process";
+
 import React, { useEffect, useState } from "react";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+
 import type { ColumnsType } from "antd/es/table";
-import type { TableRowSelection } from "antd/es/table/interface";
+import { table } from "console";
+
 var count = 105;
 const CustomeTable = (props: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,28 +38,28 @@ const CustomeTable = (props: any) => {
     console.log(record, "single Record");
   };
 
-  useEffect(() => {
-    setcolumns([
-      {
-        title: props.item.categoryname,
-        dataIndex: "category",
-        editable: true,
-        key: "category",
-        render(value, record: any, index) {
-          console.log(record, "record");
-          return <span>{record.category}</span>;
-        },
-      },
-      ...props.item.types.map((element: any, index: any) => {
-        return {
-          title: element.type,
-          dataIndex: "type_val",
-          editable: true,
-          key: "type_val",
-        };
-      }),
-    ]);
-  }, []);
+  // useEffect(() => {
+  //   setcolumns([
+  //     {
+  //       title: props.item.categoryname,
+  //       dataIndex: "category",
+  //       editable: true,
+  //       key: "category",
+  //       render(value, record: any, index) {
+  //         // console.log(record, "record");
+  //         return <span>{record.category}</span>;
+  //       },
+  //     },
+  //     ...props.item.types.map((element: any, index: any) => {
+  //       return {
+  //         title: element.type,
+  //         dataIndex: "type_val",
+  //         editable: true,
+  //         key: "type_val",
+  //       };
+  //     }),
+  //   ]);
+  // }, []);
 
   console.log(
     props.tabledata,
@@ -85,15 +86,38 @@ const CustomeTable = (props: any) => {
   /** for adding new row value */
   const handleOpenCategory = () => {
     ++count;
-    setDataSource([
-      ...dataSource,
-      {
-        id: count + 2,
-        category: "cic",
-        type_val: 0,
-        children: [],
-      },
-    ]);
+    const tabled = [...props.tabledata];
+    console.log(tabled, "befaure data aupate");
+    tabled.map((element: any, index: number) => {
+      if (element.id === props.item.id) {
+        element.rowData.push({
+          id: count + 2,
+          category: "cic",
+          type_val: [
+            element.types.map((element: any, index: number) => {
+              return {
+                type: element.title,
+                value: 0,
+              };
+            }),
+          ],
+          children: [],
+        });
+      }
+    });
+
+    console.log(tabled, "table dataa");
+
+    const updatedItem = {
+      ...props.item,
+      rowData: [...props.item.rowData],
+    };
+
+    const updatedTableData = props.tabledata.map((tableItem: any) =>
+      tableItem.id === props.item.id ? updatedItem : tableItem
+    );
+
+    props.setTableData(updatedTableData);
     //setIsModalOpen(true);
   };
 
@@ -102,39 +126,41 @@ const CustomeTable = (props: any) => {
   };
 
   /* Adding a new Column */
-  /** remaining add this col ref to datasource */
+
   const addnewType = () => {
     const newcolumns = {
       title: "type",
       dataIndex: "type_val",
-      editable: true,
+      //editable: true,
     };
 
-    setcolumns([...columns, newcolumns]);
+    const updatedItem = {
+      ...props.item,
+      types: [...props.item.types, { ...newcolumns }],
+    };
 
-    props.tabledata.map((element: any, index: number) => {
-      if (element.id === props.item.id) {
-        element.types.push(newcolumns);
-      }
-    });
+    const updatedTableData = props.tabledata.map((tableItem: any) =>
+      tableItem.id === props.item.id ? updatedItem : tableItem
+    );
+    props.setTableData(updatedTableData);
+
+    /** add colum to row when data is added */
+
+    // const tabled = [...props.tabledata];
+    // console.log(tabled, "befaure data aupate");
+    // tabled.map((element: any, index: number) => {
+    //   console.log(element, "elemenr");
+    //   element.rowData.map((element:any)=>{
+    //       element.type_val[0].map((element:any)=>{
+    //           element
+    //       })
+    //   })
+    // });
+
+    // console.log(tabled, "table dataa");
   };
   /** done adding new column */
 
-  const rowSelection: TableRowSelection<any> = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-    onSelect: (record, selected, selectedRows) => {
-      console.log(record, selected, selectedRows);
-    },
-    onSelectAll: (selected, selectedRows, changeRows) => {
-      console.log(selected, selectedRows, changeRows);
-    },
-  };
   return (
     <>
       <div className="table-header">
@@ -190,12 +216,37 @@ const CustomeTable = (props: any) => {
         </div>
       </div>
 
-      <Table
-        columns={[...columns]}
-        rowSelection={{ ...rowSelection, type: "radio" }}
-        dataSource={dataSource}
-      />
+      <table border={1} style={{ borderCollapse: "collapse" }}>
+        <tr>
+          <th>{props.item.categoryname}</th>
+          {props.item.types.map((element: any, index: number) => {
+            return (
+              <>
+                <th key={index}>{element.title}</th>
+              </>
+            );
+          })}
+        </tr>
 
+        {props.item.rowData.map((element: any, index: number) => {
+          return (
+            <>
+              <tr>
+                <td>{element.category}</td>
+                {element.type_val[0].map((element: any) => {
+                  return (
+                    <>
+                      <td>
+                        <input type="number" value={element.value} />
+                      </td>
+                    </>
+                  );
+                })}
+              </tr>
+            </>
+          );
+        })}
+      </table>
       <Modal
         title="Basic Modal"
         footer={null}

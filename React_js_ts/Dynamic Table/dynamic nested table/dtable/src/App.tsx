@@ -15,7 +15,7 @@ function App() {
     category: "",
     type: [{ value: "" }],
   });
-  const [tabledata, setTableData] = useState<TableData[]>([]);
+  const [tabledata, setTableData] = useState<any[]>([]);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -35,8 +35,13 @@ function App() {
         categoryname: formdata.category,
         tablename: formdata.tabletitle,
         types: formdata.type.map((item: any) => {
-          return { type: item.value };
+          return {
+            title: item.value,
+            dataIndex: item.value,
+            editable: true,
+          };
         }),
+        rowData: [],
       },
     ]);
 
