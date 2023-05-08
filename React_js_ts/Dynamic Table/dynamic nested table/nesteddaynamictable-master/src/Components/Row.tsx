@@ -59,7 +59,13 @@ const Row = ({
     const newRow = {
       id: row_id,
       title: dCategoryV,
-      rData: countValue,
+      rData: table.col.map((col: any) => {
+        const newObj = {
+          type: col,
+          value: 0,
+        };
+        return newObj;
+      }),
       parentId: row.id,
       childRow: [],
     };
@@ -87,6 +93,7 @@ const Row = ({
 
   const handleDeleteCategory = () => {
     if (row.parentId !== "") {
+      // THIS IS FOR CHIELD
       const newRows = table.rows.map((r: any) => {
         if (r.id === row.parentId) {
           const newChildRow = r.childRow.filter((cId: any) => cId !== row.id);
@@ -94,9 +101,13 @@ const Row = ({
           return newRow;
         } else return { ...r };
       });
+
+      const filterrow = newRows.filter((element: any) => {
+        return element.id != row.id;
+      });
       const newTable = tables.map((t: any) => {
         if (t.id === table.id) {
-          return { ...table, rows: newRows };
+          return { ...table, rows: filterrow };
         } else {
           return { ...t };
         }
@@ -104,9 +115,13 @@ const Row = ({
       setTables(newTable);
     } else {
       const newRows = table.rows.filter((r: any) => r.id !== row.id);
+      const filterrow = newRows.filter((element: any) => {
+        return element.id != row.id;
+      });
+
       const newTable = tables.map((t: any) => {
         if (t.id === table.id) {
-          return { ...table, rows: newRows };
+          return { ...table, rows: filterrow };
         } else {
           return { ...t };
         }

@@ -11,6 +11,7 @@ import {
 
 import { v4 as uuid } from "uuid";
 import Nestedtable from "./Nestedtable";
+import { ConfirmProvider } from "material-ui-confirm";
 
 import { Cancel } from "@mui/icons-material";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
@@ -18,7 +19,7 @@ import Wrapper from "./wrapper/Wrapper";
 
 const CustomeTable = () => {
   const [tables, setTables] = useState<TablePropType[]>([]);
-
+  const [resettables, setResetTables] = useState<TablePropType>();
   const [isCreate, setIsCreate] = useState(false);
   const [tableName, setTableName] = useState<string>("");
   const [categoryName, setCategoryName] = useState<string>("");
@@ -163,15 +164,19 @@ const CustomeTable = () => {
         </Dialog>
       </Wrapper>
 
-      {tables.length > 0 &&
-        tables.map((table) => (
-          <Nestedtable
-            key={table.id}
-            table={table}
-            tables={tables}
-            setTables={setTables}
-          />
-        ))}
+      <ConfirmProvider>
+        {tables.length > 0 &&
+          tables.map((table) => (
+            <Nestedtable
+              key={table.id}
+              table={table}
+              tables={tables}
+              setTables={setTables}
+              resettables={resettables}
+              setResetTables={setResetTables}
+            />
+          ))}
+      </ConfirmProvider>
     </>
   );
 };

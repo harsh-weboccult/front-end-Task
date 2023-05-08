@@ -2,6 +2,7 @@ import React from "react";
 import { TableCell, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { MyRowCellProps } from "../utils/model.data";
+import { log } from "console";
 
 const Cell = ({
   isEdit,
@@ -43,9 +44,14 @@ const Cell = ({
     });
   }, [arrayRows, data, sum]);
 
+  // if  row hase no chield
   useEffect(() => {
     if (row.childRow.length === 0) {
-      const newRowData = row.rData.map((c, i) => {
+      const improw = table.rows.filter((element: any) => {
+        return element.id === row.id;
+      });
+
+      const newRowData = improw[0].rData.map((c, i) => {
         if (i === index) {
           return { type: c.type, value: parseInt(count) };
         } else {
@@ -74,8 +80,11 @@ const Cell = ({
   //console.log(table, "table");
 
   useEffect(() => {
+    console.log("lod 3");
     if (row.childRow.length > 0) {
       const arrayOfRows = table.rows.filter((r) => row.childRow.includes(r.id));
+      console.log(arrayOfRows, "row rry");
+
       const arrayOfData = arrayOfRows.map((r) => {
         return r.rData[index];
       });
@@ -83,13 +92,20 @@ const Cell = ({
         .flatMap((array) => array)
         .reduce((total, obj) => total + obj?.value, 0);
 
-      const updatedRowData = row.rData.map((c, i) => {
+      const improw = table.rows.filter((element: any) => {
+        return element.id === row.id;
+      });
+
+      const updatedRowData = improw[0].rData.map((c: any, i: number) => {
         if (i === index) {
           return { type: c.type, value: sum };
         } else {
           return c;
         }
       });
+
+      console.log(improw, "updated row dta");
+
       const newRows = table.rows.map((r) => {
         if (r.id === row.id) {
           return { ...row, rData: updatedRowData };
@@ -104,10 +120,21 @@ const Cell = ({
         }
       });
       setTables(newTables);
+      console.log("colled");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sum]);
+
+  const setsume = (e: any) => {
+    setCount(e.target.value);
+    if (row.childRow.length === 0) {
+      // with this we gate perent
+      const arrayOfRows = table.rows.filter((r) => r.childRow.includes(row.id));
+      console.log(table.rows, "row rerrrrrry");
+      console.log(arrayOfRows, "row rerrrrrry");
+    }
+  };
 
   return (
     <>
@@ -135,7 +162,7 @@ const Cell = ({
             size="small"
             margin="dense"
             value={data.value === 0 ? "0" : count}
-            onChange={(e) => setCount(e.target.value)}
+            onChange={setsume}
           />
         </TableCell>
       )}
